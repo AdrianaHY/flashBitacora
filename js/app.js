@@ -63,3 +63,65 @@ function publicarImagen() {
   	tituloImagen.value = "";
   	// textoI.value = "";
   }
+
+  // funcion modalEvento
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: {
+        lat: -34.397,
+        lng: 150.644
+      },
+      zoom: 6
+    });
+    var infoWindow = new google.maps.InfoWindow({
+      map: map
+    });
+
+
+  }
+
+  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+      'Error: The Geolocation service failed.' :
+      'Error: Your browser doesn\'t support geolocation.');
+  }
+
+var areaTituloEvento = document.getElementById("tituloEvento");
+var mapa = document.getElementById("comentarios");
+var publicarMapa = document.getElementById("publicarDos")
+publicarMapa.addEventListener("click", function () {
+  // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        infoWindow.setPosition(pos);
+        infoWindow.setContent('Location found.');
+        map.setCenter(pos);
+      }, function () {
+        handleLocationError(true, infoWindow, map.getCenter());
+      });
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
+
+
+  var tituloEvento = areaTituloEvento.value;
+  var divContenedor = document.createElement("div");
+  var tituloMapa = document.createElement("h4");
+  h5.textContent = tituloEvento;
+  divContenedor.className = "container " + "center " + "card-panel " + "hoverable";
+  mapa.className = "center";
+  divContenedor.appendChild(tituloMapa);
+  divContenedor.appendChild(mapa);
+  mapa.style.display = "block";
+  areaPublicacion.appendChild(divContenedor);
+
+
+
+});
