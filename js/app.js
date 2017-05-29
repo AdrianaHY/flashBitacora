@@ -34,20 +34,20 @@ var imagenUsuario = document.getElementById("archivoImagen")
 var tituloImagen = document.getElementById("tituloImagen")
 var publicar = document.getElementById("publicar")
 
-publicar.addEventListener("click", limpiarModal)
-imagenUsuario.addEventListener("change",publicarImagen)
+publicar.addEventListener("click",publicarImagen )
+publicar.addEventListener("click",limpiarModal)
 
 function publicarImagen() {
   	var reader =  new FileReader ();
-  	reader.readAsDataURL(this.files[0])
+  	reader.readAsDataURL(imagenUsuario.files[0])
   	reader.onload = function (){
-  		var imagenArchivo = this.result;
-  		var nuevaImagen = document.createElement("img");
+      var nuevaImagen = new Image ();
+      var imagenArchivo = this.result;
   		var comentarios = document.getElementById("comentarios");
   		var nuevaPublicacionImagen = document.createElement("div");
   		var nuevoTituloImagen = document.createElement("h4")
 
-  		nuevaImagen.src = imagenUsuario;
+  		nuevaImagen.src = imagenArchivo;
   		nuevaPublicacionImagen.className = "card-panel  " + "hoverable";
   		nuevaImagen.className = "image-responsive " + "col " +"s12";
   		nuevoTituloImagen.innerHTML = tituloImagen.value;
